@@ -3,7 +3,7 @@ import CartWidget from './CartWidget';
 const NavBar = () => {
     return (
        <div className="App">
-     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
   <div className="container-fluid">
     <a className="navbar-brand" href="#">Index</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,10 +21,10 @@ const NavBar = () => {
           <a className="nav-link" href="#">Nosotros</a>
         </li>
         </ul>
+        <CartWidget />
     </div>
   </div>
-</nav>  
-   <CartWidget />            
+</nav>              
     </div>
   );
 }
