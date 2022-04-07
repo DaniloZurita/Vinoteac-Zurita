@@ -1,15 +1,23 @@
-import ItemCount from './ItemCount'
+import React from 'react';
+import { useEffect, useState } from 'react';
+import Productos from '../utils/Products';
+import ItemList from './ItemList'
+import {GoGet} from '../utils/GoGet';
 
 const ItemListContainer = ({greeting}) => {
-    
-    const onAdd = (quantity) => {
-        alert('Has seleccionado ' + quantity + " productos.")
-    }
+
+    const[info, setInfo] = useState([])
+
+    useEffect(() => {
+        GoGet(2000, Productos)
+        .then(result => setInfo(result))
+        .catch(err => console.log(err))
+    }, [])
 
     return(
-        <div>
-        <h2> {greeting} </h2>
-        <ItemCount stock={5} initial={1} onAdd={onAdd}/>
+        <div> {greeting} 
+            <br/>
+            <ItemList items={info}/>
         </div>
     );
 }

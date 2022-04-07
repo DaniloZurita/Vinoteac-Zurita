@@ -1,17 +1,19 @@
 import React from "react"
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ItemListContainer from './components/ItemListContainer';
+import './App.css';
 import NavBar from './components/NavBar';
+import ItemDetailContainer from "./components/ItemDetailContainer";
 
-const App = () => {
+function App() {
   return (
-    <div>
-        <NavBar/>
-        <ItemListContainer greeting='Bienvenidos a Vinoteac'/>
-  </div>
+    <div className="App">
+      <header className="App-header">
+          <NavBar/>
+      </header>
+      {/* <ItemListContainer greeting='Bienvenidos a Vinoteac'/> */}
+      <ItemDetailContainer/>
+    </div>
   );
 }
-    
 
 export default App;
