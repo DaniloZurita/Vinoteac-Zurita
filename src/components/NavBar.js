@@ -1,4 +1,7 @@
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import CartWidget from './CartWidget';
+import {Link} from 'react-router-dom';
 
 const NavBar = () => {
     return (
@@ -10,17 +13,17 @@ const NavBar = () => {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Fernet</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Tragos</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Nosotros</a>
-        </li>
-        </ul>
+    <ul className="navbar-nav mr-auto">
+                    <li className="nav-item active">
+                      <Link to='/' className="nav-link">Home</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to='/filtro/2' className="nav-link">Tragos</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to='/filtro/3' className="nav-link">Promos</Link>
+                      </li>
+                  </ul>
         <CartWidget />
     </div>
   </div>
