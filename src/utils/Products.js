@@ -7,6 +7,10 @@ const Productos = [
         quantity: '750 ml',
         price: 1000,
         stock: 6,
+        categoryId: 2,
+        category: {
+            name: 'Tragos',
+            id: 2}
     },
     {
         id: 2,
@@ -16,6 +20,10 @@ const Productos = [
         quantity: '900 ml',
         price: 1200,
         stock: 2,
+        categoryId: 2,
+        category: {
+            name: 'Tragos',
+            id: 2}
     },
     {
         id: 3,
@@ -25,6 +33,10 @@ const Productos = [
         quantity: "750 ml",
         price: 2600,
         stock: 3,
+        categoryId: 3,
+        category: {
+            name: 'Promos',
+            id: 3}
     },
     {
         id: 4,
@@ -34,6 +46,10 @@ const Productos = [
         quantity: "750 ml",
         price: 850,
         stock: 1,
+        categoryId: 2,
+        category: {
+            name: 'Tragos',
+            id: 2}
     },
     {
         id: 5,
@@ -43,6 +59,10 @@ const Productos = [
         quantity: "950 ml",
         price: 540,
         stock: 3,
+        categoryId: 2,
+        category: {
+            name: 'Tragos',
+            id: 2}
     },
 ];
 
