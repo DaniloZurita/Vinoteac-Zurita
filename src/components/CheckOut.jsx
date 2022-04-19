@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const CheckOut = () => {
     return(
         <>
-           <Link to='/cart'><Button className='btn-primary'>Finalizar Compra</Button></Link>
+           <Link to='/cart'><button className='btn-primary'>Finalizar Compra</button></Link>
         </>
     );
 }
