@@ -1,41 +1,74 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
 const CartContextProvider = ({children}) => {
 
-     const [cartList, setCartList] = useState([]);
+    const [cartList, setCartList] = useState([]);
 
-     const cantidadTotal = () =>
-
-        cartList.reduce((acum, element) => (acum += element.quantity), 0);
-
-     const addToCart = (item, quantity) => {
-         let previo = cartList.find(element => element.id === item.id);
-         if(previo === undefined) {
+    const addToCart =(item, quantity)=> {
+        let found = cartList.find(product => product.idItem === item.id);
+        if (found === undefined) {
             setCartList([
-                ...cartList, 
-                item
-            ])
+                ...cartList,
+                {
+                    idItem: item.id,
+                    imgItem: item.img,
+                    titleItem: item.title,
+                    priceItem: item.price,
+                    quantityItem: quantity
+                }]);
         } else {
-            previo.quantity += quantity;
-            }   
-     }
+            found.quantityItem += quantity;
+        }
+    }
 
-     const clear = () => {
-         setCartList([])
-     }   
+    // Botones generales de borrado total e individual
 
-     const borrarProducto = (idRemantente) => {
-         let remanenteCarro = cartList.filter(element => element.id !== idRemantente);
-         setCartList(remanenteCarro);
-     }
+    const clear =()=> {
+        setCartList([]);
+    }
 
-    return(
-        <CartContext.Provider value={{cartList, addToCart, clear, borrarProducto, cantidadTotal}}>
+    const deleteItem = (id) => {
+        let result = cartList.filter(item => item.idItem !== id);
+        setCartList(result);
+    }
+
+    // Calculo del total de articulos para el CartWidget
+
+    const totalQuantity = () => {
+        let cantidades = cartList.map(item => item.quantityItem);
+        return cantidades.reduce(((previousValue, currentValue) => previousValue + currentValue), 0);
+    }
+
+    // Calculo de precios parciales de cada producto
+
+    const partialProduct = (idItem) => {
+        let idProduct = cartList.map(item => item.idItem).indexOf(idItem);
+        return cartList[idProduct].priceItem * cartList[idProduct].quantityItem;
+    } 
+
+    // Funciones para el resumen de la compra
+
+    const subTotal = () => {
+        let partials = cartList.map(item => partialProduct(item.idItem));
+        return partials.reduce((previousValue, currentValue) => previousValue + currentValue);
+    }
+
+    const cuponPrice = () => {
+        return subTotal() * 0.15
+    }
+
+    const totalPrice = () => {
+        return subTotal()-cuponPrice()+100;
+    }
+
+    return (
+        <CartContext.Provider value={{cartList, addToCart, clear, deleteItem, totalQuantity, partialProduct, subTotal, cuponPrice, totalPrice}}>
             {children}
         </CartContext.Provider>
-    ); 
+    )
+    
 }
 
-export default CartContextProvider;
+export default CartContextProvider
