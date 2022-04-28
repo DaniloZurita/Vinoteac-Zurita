@@ -1,25 +1,24 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import ItemDetail from './ItemDetail';
-import {GoGet} from '../utils/GoGet';
 import { useParams } from 'react-router-dom';
-import Productos from '../utils/Products';
+import { goGetOnefromFb } from '../utils/getFromFirebase';
 
 const ItemDetailContainer = () => {
 
-    const[infoDetail, setInfoDetail] = useState({})
+    const [infoDetail, setInfoDetail] = useState({})
     const {idProducto} = useParams();
 
     useEffect(() => {
-        GoGet(2000, Productos.find(item => item.id === parseInt(idProducto)) )
+        goGetOnefromFb(idProducto)
             .then(result => setInfoDetail(result))
             .catch(err => console.log(err))
-    }, )
+    }, [])
     
     return(
         <div> 
             <br/>
-            <ItemDetail itemsDetail={infoDetail}/>
+            <ItemDetail item={infoDetail}/>
         </div>
     );
 }

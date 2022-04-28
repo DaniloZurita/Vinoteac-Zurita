@@ -1,9 +1,11 @@
-import React  from 'react';
-import { useState } from "react";
+import { useState, React } from "react";
+
+
 
 const ItemCount = ({stock, initial, onAdd}) => {
 
     const [quantity, setCounter]=useState(0);
+  
 
     const increment = () => {
         if (quantity<stock) {
