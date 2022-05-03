@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../App.css';
 import CartWidget from './CartWidget';
 import {Link} from 'react-router-dom';
 

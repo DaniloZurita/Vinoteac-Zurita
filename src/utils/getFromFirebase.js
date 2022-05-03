@@ -5,10 +5,11 @@ import db from './firebaseConfig';
 export const goGetfromFb = async (idFiltrado) => {
     let cat;
     if(idFiltrado) {
-        cat = query(collection(db, "products"), where('categoryId', '==', idFiltrado));
+        cat = query(collection(db, "Products"), where('categoryId', '==', idFiltrado));
     } else {
-        cat = query(collection(db, "products"));
+        cat = query(collection(db, "Products"));
     }
+    
     const searchDb = await getDocs(cat);
     const getDb = searchDb.docs.map(document => ({
         id: document.id,
@@ -18,7 +19,7 @@ export const goGetfromFb = async (idFiltrado) => {
 }
 
 export const goGetOnefromFb = async (idProducto) => {
-    const idDoc = doc(db, "products", idProducto);
+    const idDoc = doc(db, "Products", idProducto);
     const grabedDoc = await getDoc(idDoc);
     
     if (grabedDoc.exists()) {
@@ -27,6 +28,6 @@ export const goGetOnefromFb = async (idProducto) => {
             ...grabedDoc.data()
         }
       } else {
-        console.log("No existe el producto");
+        console.error("No existe el producto");
       }
   }
