@@ -21,6 +21,7 @@ export const goGetfromFb = async (idFiltrado) => {
 export const goGetOnefromFb = async (idProducto) => {
     const idDoc = doc(db, "Products", idProducto);
     const grabedDoc = await getDoc(idDoc);
+    console.log(idProducto)
     
     if (grabedDoc.exists()) {
         return {
